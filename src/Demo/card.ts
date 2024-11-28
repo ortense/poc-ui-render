@@ -1,4 +1,4 @@
-import { btn, col, img, txt } from '@tiendanube/nube-ui'
+import { btn, col, img, txt, row } from '@tiendanube/nube-ui'
 import { theme } from './theme'
 
 export const card = (src: string, alt: string, c2a = 'hey!!') => {
@@ -8,7 +8,6 @@ export const card = (src: string, alt: string, c2a = 'hey!!') => {
     gap: theme.spacing.default,
     borderRadius: theme.spacing.default,
     width: '400px',
-    height: '460px',
     justifyContent: 'space-between',
     children: [
       img({ src, alt }),
@@ -21,7 +20,7 @@ export const card = (src: string, alt: string, c2a = 'hey!!') => {
           'click': 'custom:app:click'
         },
         children: [
-          txt({ value: c2a, modifiers: ['bold', 'uppercase'] })
+          txt({ value: c2a, modifiers: ['bold', 'uppercase', 'italic' ] })
         ],
       })
     ],

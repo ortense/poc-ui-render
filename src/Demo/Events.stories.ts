@@ -1,9 +1,7 @@
 import { defaultState, render, run } from '@tiendanube/nube-ui/utils'
-import { row, txt } from '@tiendanube/nube-ui'
+import { col, row, txt } from '@tiendanube/nube-ui'
+import { NubeSDK, NubeSDKState } from '@tiendanube/nube-sdk-types'
 import { theme } from './theme'
-import { NubeApp } from '@internal/types'
-import { NubeSDK } from '@tiendanube/nube-sdk-types'
-
 
 export default { title: 'Demo/Events' }
 
@@ -13,9 +11,9 @@ const gift = () => row({
   width: '100%',
   background: theme.colors.primary.dark,
   color: theme.colors.primary.light,
-  children: [
+  children: [ 
     txt({
-      value: 'you got a gift!', 
+      value: 'Você ganhou um brinde!', 
       modifiers: ['bold', 'uppercase']
     })
   ]
@@ -23,16 +21,14 @@ const gift = () => row({
 
 export const GiftComponent = render(gift())
 
-const MySimpleApp: NubeApp = (nube) => {
-  nube.on('checkout:step_ready', ({ cart }) => {
-    if (cart.subtotal >= 200) {
-      nube.send('checkout:render_element', () => {
-        return {
-          ui: {
-            'last_at_main_content': gift()
-          }
+function MySimpleApp (nube: NubeSDK) {
+  nube.on('checkout:step_ready', (state: NubeSDKState) => {
+    if (state.cart.subtotal >= 500) {
+      nube.send('checkout:render_element', () => ({
+        ui: {
+          'before_line_items': gift()
         }
-      })
+      }))
     }
   })
 }
@@ -47,6 +43,6 @@ export const ExampleOne = run(MySimpleApp, {
       quantity: 1,
       price: 100,
     }],
-    subtotal: 200
+    subtotal: 500
   }
 })

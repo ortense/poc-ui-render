@@ -46,7 +46,7 @@ export function Checkout() {
       <Row width="100%" background="#ccc" justifyContent="center" padding="1rem">
         <Txt level={1} modifiers={['bold', 'uppercase']}>{"header"}</Txt>
       </Row>
-      <AfterMainContent />
+      <BeforeMainContent />
       <Row gap="1rem" width="90%" margin="auto" background="#ddd">
         <Col width="60%" height="500px" padding="1rem" alignItems="center" justifyContent='space-between'>
           <FirstAtMainContent />
@@ -59,7 +59,7 @@ export function Checkout() {
           <AfterLineItems />
         </Col>
       </Row>
-      <BeforeMainContent />
+      <AfterMainContent />
       <Row width="100%" background="#ccc" justifyContent="center" padding="1rem">
         <Txt level={1} modifiers={['bold', 'uppercase']}>{"footer"}</Txt>
       </Row>

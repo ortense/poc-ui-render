@@ -9,14 +9,12 @@ const images = [
 ]
 
 export const cardList = () => col({
-  alignItems: 'center',
   width: '100%',
+  alignItems: 'center',
+  
+  gap: theme.spacing.default,
   children: [
     txt({ value: 'card list', level: 1, modifiers: ['bold', 'capitalize'] }),
-    row({
-      width: '100%',
-      gap: theme.spacing.default,
-      children: images.map(src => card(src, 'alt text'))
-    })
-  ],
+    ...images.map(src => card(src, 'alt text'))
+  ]
 })
